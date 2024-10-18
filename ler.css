@@ -23,14 +23,14 @@ body {
     justify-content: center;
     min-height: 100vh;
     text-align: center;
-    background-color: beige;
+    background-color: #789DBC;
     
 }
 
 table, th, td {
     border: 1px solid;
     width: 75%;
-    background-color: ghostwhite;
+    background-color: #FFE3E3;
     table-layout: fixed;
         
 }

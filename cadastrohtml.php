@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="cadastrar.css">
     <title>Document</title>
 </head>
 <body>
@@ -20,11 +20,14 @@
 <option value="Analgésico">Analgésico</option>
 <option value="Antibiótico">Antibiótico</option>
 <option value="Anti-inflamatório">Anti-inflamatório</option>
+<option value="Anti-inflamatório">Outros</option>
+
 </select><br><br>
     <label>Data de validade.</label><br>
     <input type="date"  name="data" required><br><br>
 
-    <button type="submit">Cadastrar</button>
+<button class="btn"> Cadastrar
+</button>
     </form>
 </main>
 </body> 
