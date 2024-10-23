@@ -13,7 +13,8 @@ $sql = "INSERT INTO medicamentos (nome, preço, quantidade, categoria, datavalid
 try {
     // Executar a consulta
     $pdo->exec($sql);
-    echo "Produto Cadastrado";
+    header('Location: cadastrohtml.php'); // Atualiza a página
+    exit;
 } catch (PDOException $e) {
     echo "Erro ao cadastrar produto: " . $e->getMessage();
 }

@@ -1,33 +1,52 @@
 <?php
 require 'conexao.php';
 
-if (isset($_GET['nome'])) {
-    $nome = $_GET['nome'];
-    $sql = $pdo->prepare('SELECT * FROM medicamentos WHERE nome = :nome');
-    $sql->bindParam(':nome', $nome);
-    $sql->execute();
-    $medicamento = $sql->fetch(PDO::FETCH_ASSOC);
+if (!isset($_GET['nome'])) {
+    die("Medicamento não especificado.");
+}
+
+$nomeMedicamento = $_GET['nome'];
+
+$query = "SELECT * FROM medicamentos WHERE nome = :nome";
+$stmt = $pdo->prepare($query);
+$stmt->bindValue(':nome', $nomeMedicamento);
+$stmt->execute();
+$produto = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$produto) {
+    die("Medicamento não encontrado!");
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Atualiza os dados do medicamento
-    $sql = $pdo->prepare('UPDATE medicamentos SET preço = :preço, quantidade = :quantidade, categoria = :categoria, datavalidade = :data WHERE nome = :nome');
-    
-    $sql->bindParam(':preço', $_POST['preço']);
-    $sql->bindParam(':quantidade', $_POST['quantidade']);
-    $sql->bindParam(':categoria', $_POST['categoria']);
-    $sql->bindParam(':data', $_POST['data']);
-    $sql->bindParam(':nome', $_POST['nome']);
+    $preco = $_POST['preco'];
+    $quantidade = $_POST['quantidade'];
+    $categoria = $_POST['categoria'];
+    $data = $_POST['data'];
 
-    if ($sql->execute()) {
-        header('Location: index.php'); // Redireciona após a edição
-        exit();
+    $updateQuery = "
+        UPDATE medicamentos 
+        SET preço = :preco, quantidade = :quantidade, categoria = :categoria, datavalidade = :datavalidade 
+        WHERE nome = :nome
+    ";
+
+    $updateStmt = $pdo->prepare($updateQuery);
+    $updateStmt->bindValue(':preco', $preco);
+    $updateStmt->bindValue(':quantidade', $quantidade);
+    $updateStmt->bindValue(':categoria', $categoria);
+    $updateStmt->bindValue(':datavalidade', $data);
+    $updateStmt->bindValue(':nome', $nomeMedicamento);
+
+    if ($updateStmt->execute()) {
+        header('Location: cadastrohtml.php'); 
+        exit;
+    } else {
+        echo "Erro ao atualizar o medicamento.";
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,30 +55,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <main class="container">
-        <form action="" method="post">
-            <h1>Editar Medicamento</h1> <br>    
-            <input type="hidden" name="nome" value="<?php echo htmlspecialchars($medicamento['nome']); ?>">
-            <label>Nome do medicamento:</label>
-            <input type="text" name="nome" value="<?php echo htmlspecialchars($medicamento['nome']); ?>" readonly><br><br>
-            
-            <label>Preço</label><br>
-            <input type="number" name="preço" value="<?php echo htmlspecialchars($medicamento['preço']); ?>" required><br><br>
-            
-            <label>Quantidade disponível em estoque:</label>
-            <input type="number" name="quantidade" value="<?php echo htmlspecialchars($medicamento['quantidade']); ?>" required><br><br>
-            
-            <label>Categoria:</label><br>
-            <select name="categoria" required>
-                <option value="Analgésico" <?php echo $medicamento['categoria'] == 'Analgésico' ? 'selected' : ''; ?>>Analgésico</option>
-                <option value="Antibiótico" <?php echo $medicamento['categoria'] == 'Antibiótico' ? 'selected' : ''; ?>>Antibiótico</option>
-                <option value="Anti-inflamatório" <?php echo $medicamento['categoria'] == 'Anti-inflamatório' ? 'selected' : ''; ?>>Anti-inflamatório</option>
-                <option value="Outros" <?php echo $medicamento['categoria'] == 'Outros' ? 'selected' : ''; ?>>Outros</option>
-            </select><br><br>
-            
-            <label>Data de validade:</label>
-            <input type="date" name="data" value="<?php echo htmlspecialchars($medicamento['datavalidade']); ?>" required><br><br>
+        <form action="" method="post" class="form-cadastro">
+            <h1>Editar Medicamento</h1><br>
 
-            <button type="submit" class="btn">Atualizar</button>
+            <label>Nome do Medicamento:</label><br>
+            <input type="text" value="<?php echo htmlspecialchars($produto['nome']); ?>" disabled class="form"><br><br>
+
+            <label>Novo Preço:</label><br>
+            <input type="number" name="preco" required class="form"><br><br>
+
+            <label>Quantidade Disponível:</label><br>
+            <input type="number" name="quantidade" value="<?php echo htmlspecialchars($produto['quantidade']); ?>" required class="form"><br><br>
+
+            <label>Categoria:</label><br> 
+            <select name="categoria" required class="form"><br><br>
+                <option value="Analgésico" <?php echo ($produto['categoria'] == 'Analgésico') ? 'selected' : ''; ?>>Analgésico</option>
+                <option value="Antibiótico" <?php echo ($produto['categoria'] == 'Antibiótico') ? 'selected' : ''; ?>>Antibiótico</option>
+                <option value="Anti-inflamatório" <?php echo ($produto['categoria'] == 'Anti-inflamatório') ? 'selected' : ''; ?>>Anti-inflamatório</option>
+                <option value="Outros" <?php echo ($produto['categoria'] == 'Outros') ? 'selected' : ''; ?>>Outros</option>
+            </select><br><br>
+
+            <label>Data de Validade:</label><br>
+            <input type="date" name="data" value="<?php echo htmlspecialchars($produto['datavalidade']); ?>" required class="form"><br><br>
+
+            <button type="submit" class="uiverse">Atualizar </button>
         </form>
     </main>
 </body>

@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
-
-
-
 * {
     margin: 0;
     padding: 0;
@@ -11,31 +8,25 @@
     font-family: 'Poppins', sans-serif;
 }
 
-
 body {
-
     width: 100%;
     height: 100%;
-    color: black;
+    color: #333333; /* Cinza Escuro */
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     min-height: 100vh;
     text-align: center;
-    background-image: linear-gradient(45deg, #B2FFFF , #B2FFB2 );
-
-    
+    background-color: #E6F7FF; /* Azul Bebê Claro */
 }
 
 .form-cadastro {
-
     padding: 1rem;
     border: solid 2px black;
-    background-color: #E2F1E7;
+    background-color: #FFFFFF; /* Branco */
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
     max-width: 70%;
-   
 }
 
 label {
@@ -44,25 +35,23 @@ label {
 }
 
 input {
-
     padding: 0.3rem;
     width: 70%;
     font-size: 1rem;
 }
 
 select {
-
     padding: 0.5rem;
     width: 73%;
+   
 
 }
-
 
 .uiverse {
     width: 6.5em;
     height: 2.3em;
     margin: 0.5em;
-    background: black;
+    background: #5BC0DE; /* Azul Claro */
     color: white;
     border: none;
     border-radius: 0.625em;
@@ -72,13 +61,13 @@ select {
     position: relative;
     z-index: 1;
     overflow: hidden;
-   }
-   
-   .uiverse:hover {
+}
+
+.uiverse:hover {
     color: black;
-   }
-   
-   .uiverse:after {
+}
+
+.uiverse:after {
     content: "";
     background: white;
     position: absolute;
@@ -89,33 +78,18 @@ select {
     bottom: 0;
     transform: skewX(-45deg) scale(0, 1);
     transition: all 0.5s;
-   }
-   
-   .uiverse:hover:after {
+}
+
+.uiverse:hover:after {
     transform: skewX(-45deg) scale(1, 1);
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
-   }
-
-   .uiverse input {
-    font-size: 1rem; 
-    color: #343A40; 
-    background-color: #629584; 
-    border-radius: 0.5rem; 
-    padding: 0.5rem 1rem; 
-    cursor: pointer; 
-}
-
-.uiverse input:hover {
-    transform: scale(1.2); 
 }
 
 .form-cadastro {
     flex: 1; /* Cada formulário ocupará o mesmo espaço */
     margin: 1rem; /* Espaçamento entre os formulários */
 }
-
-
 
 .container {
     display: flex;
@@ -126,45 +100,60 @@ select {
     margin: 0 auto; /* Centraliza o container */
 }
 
-
-
+.container-table {
+    display: flex;
+    justify-content: center; /* Centraliza a tabela */
+    width: 100%; /* Usa toda a largura do container */
+}
 
 table {
-    width: 100%; /* Usar toda a largura do container */
-    border-collapse: collapse; /* Remove o espaço entre bordas */
+    width: auto; 
+    border-collapse: collapse; 
+    table-layout: fixed;
+    margin-top: 5rem;
 }
+
 td {
+    height: auto; 
+    padding: 0.2rem 0.5rem;
     min-width: 15vh;
+    border: 2px solid #B2B2B2;
 }
 
 th, td {
-    border: 2px solid #000; 
-    background-color: #E2F1E7; 
-    padding: 1rem; 
-    width: 16.66%; /* Divide a largura igualmente entre 6 colunas */
+    background-color: white; 
+    padding: 0.2rem 0.5rem; 
+    line-height: 1.5; 
 }
 
 th {
     font-weight: bold;
+    background-color: #B2E1FF; /* Verde */
+    padding: 0.5rem;
+}
+
+thead {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+    position: relative; /* Para que a sombra funcione corretamente */
+    z-index: 1; 
 }
 
 .btn-editar {
-    background-color: #4CAF50; 
+    background-color: #5CB85C; /* Verde */
     color: white;
     padding: 0.5rem;
     font-weight: bold;
 }
 
 .btn-editar:hover {
-    background-color: #45a049; 
+    background-color: #45a049; /* Verde escuro */
 }
 
 .btn-excluir {
-    background-color: #f44336; 
+    background-color: #D9534F; 
     color: white;
     padding: 0.5rem;
     font-weight: bold;
-
 }
 
 .btn-excluir:hover {
