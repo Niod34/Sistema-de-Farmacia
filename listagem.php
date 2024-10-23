@@ -25,6 +25,8 @@ $farmacia = $sql->fetchAll(PDO::FETCH_ASSOC);
       <th scope="col">Quantidade disponível em estoque</th>
       <th scope="col">Categoria</th>
       <th scope="col">Data de validade.</th>
+      <th scope="col">Excluir/Editar</th>
+
     </tr>
     </thead>
     <tbody>
@@ -35,9 +37,15 @@ $farmacia = $sql->fetchAll(PDO::FETCH_ASSOC);
       <td><?php echo $produto["quantidade"]; ?></td>
       <td><?php echo $produto["categoria"]; ?></td>
       <td><?php echo $produto["datavalidade"]; ?></td>
+      <td><div class="btn ">
+        <input type="submit" name="enviar" value="Excluir"> 
+    </div></td>
+
     </tr>
+    
     <?php endforeach; ?>
     </tbody>
+    <tbody></tbody>
 </table>
 </body>
 </html>
