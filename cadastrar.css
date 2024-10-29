@@ -21,13 +21,15 @@ body {
     background-color: #E6F7FF; /* Azul Bebê Claro */
 }
 
-.form-cadastro {
+.form-cadastro, .form-venda {
+    width: 45%; 
     padding: 1rem;
     border: solid 2px black;
     background-color: #FFFFFF; /* Branco */
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
-    max-width: 70%;
+    margin: 1rem;
 }
+
 
 label {
     font-size: 1rem;
@@ -65,6 +67,7 @@ select {
 
 .uiverse:hover {
     color: black;
+    border: 2px solid black;
 }
 
 .uiverse:after {
@@ -87,30 +90,32 @@ select {
 }
 
 .form-cadastro {
-    flex: 1; /* Cada formulário ocupará o mesmo espaço */
-    margin: 1rem; /* Espaçamento entre os formulários */
+    flex: 1; 
+    margin: 1rem; 
 }
 
 .container {
     display: flex;
-    justify-content: space-around; /* Para separar os formulários horizontalmente */
-    flex-wrap: wrap; /* Permite que os formulários se movam para baixo em telas menores */
+    justify-content: space-around;
+    flex-wrap: wrap;
     width: 100%;
-    max-width: 600px; /* Para limitar a largura total */
-    margin: 0 auto; /* Centraliza o container */
+    max-width: 1000px; /* Aumenta a largura máxima para acomodar os formulários */
+    margin: 0 auto;
 }
 
 .container-table {
     display: flex;
-    justify-content: center; /* Centraliza a tabela */
-    width: 100%; /* Usa toda a largura do container */
+    justify-content: center; 
+    width: 100%; 
 }
 
 table {
     width: auto; 
     border-collapse: collapse; 
     table-layout: fixed;
-    margin-top: 5rem;
+    margin-top: 2rem;
+    overflow: hidden;
+
 }
 
 td {

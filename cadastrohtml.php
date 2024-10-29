@@ -17,7 +17,7 @@ $farmacia = $sql->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="cadastra.css">
+    <link rel="stylesheet" href="cadastrar.css">
     <title>Cadastro de Medicamentos</title>
 </head>
 <body>
@@ -46,6 +46,26 @@ $farmacia = $sql->fetchAll(PDO::FETCH_ASSOC);
             
             <button class="uiverse">Cadastrar</button>
         </form>
+
+
+        <form action="venda.php" method="post" class="form-venda">
+    <h2>Venda de Medicamentos</h2><br>
+    
+    <label for="medicamento">Selecione o medicamento:</label><br>
+    <select name="medicamento" id="medicamento" required>
+        <option value="">Escolha um medicamento</option>
+        <?php foreach ($farmacia as $produto): ?>
+            <option value="<?php echo htmlspecialchars($produto['nome']); ?>">
+                <?php echo htmlspecialchars($produto['nome']); ?>
+            </option>
+        <?php endforeach; ?>
+    </select><br><br>
+    
+    <label>Quantidade vendida:</label><br>
+    <input type="number" name="quantidade_venda" required class="form"><br><br>
+    
+    <button type="submit" class="uiverse">Vender</button>
+</form>
 
         <div class="container-table">
             <table class="table">
